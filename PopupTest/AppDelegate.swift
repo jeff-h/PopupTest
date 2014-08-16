@@ -12,9 +12,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
 
-
+    var myPopup: AXStatusItemPopup!
+    var myViewController: PopupViewController!
+        
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
+        
+        myViewController = PopupViewController(nibName: "PopupView", bundle: NSBundle.mainBundle())
+            
+//         myContentViewController = ContentViewController(nibName: "ContentViewController", bundle: NSBundle.mainBundle(), duckDNSModel: self.duckDNSModel)
+
+        
+        // init the status item popup
+        let image = NSImage(named: "cloud")
+        let alternateImage = NSImage(named: "cloudgrey")
+        
+        myPopup = AXStatusItemPopup(viewController: myViewController, image: image, alternateImage: alternateImage)
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
